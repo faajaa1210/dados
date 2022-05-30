@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Document</title>
+</head>
+<body>
+    <header><h1>Juego de Dados</h1></header>
+    <section class="calculos">
+
+        <input type="number" id="n1">
+        <p>Cuantos Jugadores: </p>
+        <br><br>
+        <button class="button" id="boton1">Jugar</button>
+        
+            <p>El Dado Es: </p>
+            <div id="resultado"></div>
+            <div id="ganador"></div>
+
+            <script>
+                var b = document.getElementById('boton1');
+                b.addEventListener('click', dados);
+
+                function dados() {
+                    var nur1 = parseInt(document.getElementById('n1').value);
+                    const jugadores = [];
+                    for (let l = 0; l < nur1; l++) {
+                        jugadores[l] = 2 + Math.floor(Math.random() * 5);
+                    }
+                    document.getElementById("resultado").innerHTML = jugadores
+
+                    var maxi = 0;
+                    for (let l = 0; l < nur1; l++) {
+                        if (jugadores[l] > maxi) {
+                            maxi = jugadores[l];
+                        }
+                    }
+                    var aux = 0;
+
+                    for (let l = 0; l < nur1; l++) {
+                        if (jugadores[l] == maxi) {
+                            aux++;
+                        }
+                    }
+                    if (aux == 1) {
+                        document.getElementById("ganador").innerHTML = "El ganador es el jugador  con el numero: " + maxi
+
+                    }
+                    else if (aux > 1) {
+                        document.getElementById("ganador").innerHTML = "Lanzar de nuevo, no hay ganadores"
+
+                    }
+
+                }
+
+
+
+            </script>
+    </section>
+</body>
+</html>
